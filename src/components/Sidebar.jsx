@@ -5,7 +5,11 @@ import { AuthContext } from '../context/AuthContext';
 const Sidebar = ({role}) => {
 
 const {setIsLogedIn}=useContext(AuthContext)
-    
+const roles=role.role.permissions
+console.log(roles);
+const allowedPermissions=sidebarList.filter((item)=>roles?.includes(item.title))
+
+    console.log(allowedPermissions);
   return (
     <div className='flex flex-col items-center justify-between py-8 px-5 bg-notesColor w-fit h-full absolute left-0 top-0 bottom-0 '>
         {
@@ -26,11 +30,11 @@ const {setIsLogedIn}=useContext(AuthContext)
               <NavLink to='/' className='navlink text-xl font-semibold hover:text-l transition-all duration-75 cursor-pointer' >
         HOME
     </NavLink>
-            {
-                role.role.permissions?.map((item,i)=>(
-                    <NavLink to={item.toLowerCase()} className='navlink text-xl font-semibold hover:text-l transition-all duration-75 cursor-pointer' key={i}> {item.toUpperCase()} </NavLink>
+             {
+                allowedPermissions?.map((item,i)=>(
+                    <NavLink to={item.title.toLowerCase()} className='navlink text-xl font-semibold hover:text-l transition-all duration-75 cursor-pointer' key={i}> {item.toUpperCase()} </NavLink>
                 ))
-            }
+            } 
             <button onClick={()=>setIsLogedIn({status:false})} >logout</button>
         </ul>
         }
