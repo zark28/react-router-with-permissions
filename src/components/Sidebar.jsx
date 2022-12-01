@@ -21,9 +21,10 @@ const allowedPermissions=sidebarList.filter((item)=>roles?.includes(item.title))
     </NavLink>
     {
         sidebarList?.map((item,i)=>(
-            <NavLink to={item.toLowerCase()} className='navlink text-xl font-semibold hover:text-l transition-all duration-75 cursor-pointer' key={i} >{item.toUpperCase()}</NavLink>
+            <NavLink to={item?.title.toLowerCase()} className='navlink text-xl font-semibold hover:text-l transition-all duration-75 cursor-pointer' key={i} >{item.title.toUpperCase()}</NavLink>
         ))
     }
+         <button onClick={()=>setIsLogedIn({status:false})} >logout</button>
 </ul>
 
         :<ul className='w-full h-full flex flex-col justify-center gap-[2rem]'>
@@ -32,7 +33,7 @@ const allowedPermissions=sidebarList.filter((item)=>roles?.includes(item.title))
     </NavLink>
              {
                 allowedPermissions?.map((item,i)=>(
-                    <NavLink to={item.title.toLowerCase()} className='navlink text-xl font-semibold hover:text-l transition-all duration-75 cursor-pointer' key={i}> {item.toUpperCase()} </NavLink>
+                    <NavLink to={item?.title.toLowerCase()} className='navlink text-xl font-semibold hover:text-l transition-all duration-75 cursor-pointer' key={i}> {item.title.toUpperCase()} </NavLink>
                 ))
             } 
             <button onClick={()=>setIsLogedIn({status:false})} >logout</button>
